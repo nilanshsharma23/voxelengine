@@ -1,4 +1,4 @@
-package com.pyscrap.renderEngine;
+package com.pyscrap.models;
 
 public class RawModel {
     private int vaoID;
