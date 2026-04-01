@@ -83,6 +83,10 @@ public class DisplayManager {
         return h.get(0);
     }
 
+    public static long getWindow() {
+        return window;
+    }
+
     public static void closeDisplay() {
         glfwFreeCallbacks(window);
         glfwDestroyWindow(window);

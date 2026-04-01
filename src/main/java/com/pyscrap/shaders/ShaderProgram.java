@@ -3,6 +3,11 @@ package com.pyscrap.shaders;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.FloatBuffer;
+
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
 
 import static org.lwjgl.opengl.GL40.*;
 
@@ -11,15 +16,24 @@ public abstract class ShaderProgram {
     private int vertexShaderID;
     private int fragmentShaderID;
 
+    private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
+
     public ShaderProgram(String vertexFile, String fragmentFile) {
         vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
         fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
         programID = glCreateProgram();
         glAttachShader(programID, vertexShaderID);
         glAttachShader(programID, fragmentShaderID);
+        bindAttributes();
         glLinkProgram(programID);
         glValidateProgram(programID);
-        bindAttributes();
+        getAllUniformLocations();
+    }
+
+    protected abstract void getAllUniformLocations();
+
+    protected int getUniformLocation(String uniformName) {
+        return glGetUniformLocation(programID, uniformName);
     }
 
     public void start() {
@@ -43,6 +57,23 @@ public abstract class ShaderProgram {
 
     protected void bindAttribute(int attribute, String variableName) {
         glBindAttribLocation(programID, attribute, variableName);
+    }
+
+    protected void loadFloat(int location, float value) {
+        glUniform1f(location, value);
+    }
+
+    protected void loadVector(int location, Vector3f vector) {
+        glUniform3f(location, vector.x, vector.y, vector.z);
+    }
+
+    protected void loadBoolean(int location, boolean value) {
+        glUniform1f(location, value ? 1 : 0);
+    }
+
+    protected void loadMatrix(int location, Matrix4f matrix) {
+        matrix.get(matrixBuffer);
+        glUniformMatrix4fv(location, false, matrixBuffer);
     }
 
     private static int loadShader(String file, int type) {
