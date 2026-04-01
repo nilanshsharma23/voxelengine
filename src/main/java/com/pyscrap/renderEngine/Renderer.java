@@ -16,7 +16,7 @@ import com.pyscrap.toolbox.Maths;
 
 public class Renderer {
     private static final float FOV = 70;
-    private static final float NEAR_PLANE = 1.0f;
+    private static final float NEAR_PLANE = 0.1f;
     private static final float FAR_PLANE = 1000;
 
     private Matrix4f projectionMatrix;

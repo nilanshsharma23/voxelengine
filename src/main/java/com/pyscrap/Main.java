@@ -1,5 +1,6 @@
 package com.pyscrap;
 
+import static org.lwjgl.glfw.GLFW.glfwGetTime;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 import org.joml.Vector3f;
@@ -18,6 +19,8 @@ public class Main {
 
         public static void main(String[] args) {
                 DisplayManager.createDisplay();
+
+                double lastTime = glfwGetTime();
 
                 Loader loader = new Loader();
 
@@ -110,7 +113,12 @@ public class Main {
                 MasterRenderer renderer = new MasterRenderer();
 
                 while (!glfwWindowShouldClose(DisplayManager.window)) {
-                        entity.increaseRotation(1f, 1f, 1f);
+                        double currentTime = glfwGetTime();
+                        deltaTime = (float) (currentTime - lastTime);
+                        lastTime = currentTime;
+                        camera.move(deltaTime);
+
+                        // entity.increaseRotation(1f, 1f, 1f);
                         renderer.processEntity(entity);
 
                         renderer.render(camera);

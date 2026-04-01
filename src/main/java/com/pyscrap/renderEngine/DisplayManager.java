@@ -5,6 +5,8 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.system.*;
 
+import com.pyscrap.input.Keyboard;
+
 import java.nio.*;
 
 import static org.lwjgl.glfw.Callbacks.*;
@@ -45,6 +47,12 @@ public class DisplayManager {
                 glfwSetWindowShouldClose(window, true);
             }
         });
+
+        try (Keyboard keyboard = new Keyboard()) {
+            glfwSetKeyCallback(window, keyboard::invoke);
+        }
+
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
         try (MemoryStack stack = stackPush()) {
             IntBuffer pWidth = stack.mallocInt(1);
