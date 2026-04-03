@@ -61,7 +61,7 @@ public class Camera {
 
         Mouse.endFrame();
 
-        // System.out.println(Globals.chunkCoordX + " " + Globals.chunkCoordY);
+        System.out.println(position);
     }
 
     public Vector3f getPosition() {

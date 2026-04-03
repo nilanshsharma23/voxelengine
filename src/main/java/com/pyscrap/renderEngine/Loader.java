@@ -2,11 +2,15 @@ package com.pyscrap.renderEngine;
 
 import static org.lwjgl.opengl.GL40.*;
 
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.lwjgl.BufferUtils;
 
@@ -27,11 +31,19 @@ public class Loader {
         return new RawModel(vaoID, indices.length);
     }
 
-    public int loadTexture(String fileName) {
+    public int loadTexture(int startX, int startY) {
+        BufferedImage atlas = null;
+
+        try {
+            atlas = ImageIO.read(new FileInputStream("src/main/java/com/pyscrap/resources/atlas.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Texture texture;
 
         try {
-            texture = new Texture("src/main/java/com/pyscrap/resources/" + fileName);
+            texture = new Texture(atlas, startX, startY);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -24,6 +24,8 @@ public class Renderer {
 
     public Renderer(StaticShader shader) {
         this.shader = shader;
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
         createProjectionMatrix();
         shader.start();
         shader.loadProjectionMatrix(projectionMatrix);
@@ -33,7 +35,7 @@ public class Renderer {
     public void prepare() {
         glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(1, 0, 0, 1);
+        glClearColor(0, 0.9f, 1, 1);
     }
 
     public void render(Map<TexturedModel, List<Entity>> entities) {
