@@ -4,22 +4,7 @@ import org.joml.Vector3i;
 
 public class BlockData {
         public static int[] indices = { // +Z FACE
-                        0, 1, 2, 2, 3, 0,
-
-                        // -Z FACE
-                        4, 5, 6, 6, 7, 4,
-
-                        // -X FACE
-                        8, 9, 10, 10, 11, 8,
-
-                        // +X FACE
-                        12, 13, 14, 14, 15, 12,
-
-                        // +Y FACE
-                        16, 17, 18, 18, 19, 16,
-
-                        // -Y FACE
-                        20, 21, 22, 22, 23, 20, };
+                        0, 1, 2, 2, 3, 0, };
 
         public static Float[] positiveZVertices = {
                         // +Z FACE (front, normal: 0, 0, +1)

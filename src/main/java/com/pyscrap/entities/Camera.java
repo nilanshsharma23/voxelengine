@@ -1,13 +1,16 @@
 package com.pyscrap.entities;
 
 import com.pyscrap.input.Mouse;
+import com.pyscrap.terrain.World;
+import com.pyscrap.Globals;
 import com.pyscrap.input.Keyboard;
 
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 public class Camera {
-    private Vector3f position = new Vector3f(0, 0, 0);
+    private Vector3f position = new Vector3f((World.CHUNK_LENGTH * World.NUMBER_OF_CHUNKS_X) / 2, 10,
+            (World.CHUNK_LENGTH * World.NUMBER_OF_CHUNKS_Z) / 2);
 
     private float pitch;
     private float yaw;
@@ -40,11 +43,11 @@ public class Camera {
             position.z += cameraSpeed * Math.sin(Math.toRadians(yaw));
         }
 
-        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_SPACE)) { // Go up
+        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
             position.y += cameraSpeed;
         }
 
-        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) { // Go down
+        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) {
             position.y -= cameraSpeed;
         }
 
@@ -59,9 +62,10 @@ public class Camera {
             pitch = -90;
         }
 
-        Mouse.endFrame();
+        Globals.CHUNK_COORD_X = (int) (position.x / World.CHUNK_LENGTH);
+        Globals.CHUNK_COORD_Z = (int) (position.z / World.CHUNK_LENGTH);
 
-        System.out.println(position);
+        Mouse.endFrame();
     }
 
     public Vector3f getPosition() {
