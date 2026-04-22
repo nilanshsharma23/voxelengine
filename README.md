@@ -1,2 +1,12 @@
 # Voxel Engine
-Basic Voxel Engine with world generation, saving and loading, chunk loading and unloading, culling, and many optimizations. Made entirely from scratch with Java+LWJGL.
+
+Basic voxel engine made with Java + LWJGL.
+
+## Features
+
+- Perlin Noise World Generation
+- Block culling and optimization
+- Chunk loading and unloading
+- Textures
+- Player Movement
+- Made from scratch
