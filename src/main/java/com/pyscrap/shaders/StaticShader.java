@@ -6,15 +6,13 @@ import com.pyscrap.entities.Camera;
 import com.pyscrap.toolbox.Maths;
 
 public class StaticShader extends ShaderProgram {
-    private static final String VERTEX_FILE = "src/main/java/com/pyscrap/shaders/vertexShader.glsl";
-    private static final String FRAGMENT_FILE = "src/main/java/com/pyscrap/shaders/fragmentShader.glsl";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;
     private int location_viewMatrix;
 
     public StaticShader() {
-        super(VERTEX_FILE, FRAGMENT_FILE);
+        super("/vertexShader.glsl", "/fragmentShader.glsl");
     }
 
     @Override
