@@ -9,12 +9,14 @@ public class Entity {
     private Vector3f position;
     private Vector3f rotation;
     private Vector3f scale;
+    private Vector3f size;
 
-    public Entity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+    public Entity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale, Vector3f size) {
         this.model = model;
         this.position = position;
         this.rotation = rotation;
         this.scale = scale;
+        this.size = size;
     }
 
     public void increasePosition(float dx, float dy, float dz) {
@@ -61,4 +63,7 @@ public class Entity {
         this.scale = scale;
     }
 
+    public Vector3f getSize() {
+        return size;
+    }
 }

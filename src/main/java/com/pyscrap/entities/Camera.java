@@ -16,6 +16,10 @@ public class Camera {
     private float yaw;
     private float roll;
 
+    private Vector3f size = new Vector3f(1, 1, 1);
+
+    private boolean negativeYCollision = false;
+
     public Camera() {
         Mouse.createCallbacks();
     }
@@ -47,7 +51,7 @@ public class Camera {
             position.y += cameraSpeed;
         }
 
-        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+        if (Keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT) && !negativeYCollision) {
             position.y -= cameraSpeed;
         }
 
@@ -82,5 +86,10 @@ public class Camera {
 
     public float getRoll() {
         return roll;
+    }
+
+    public void checkNegativeYCollision(Entity entity) {
+        System.out.println(entity.getPosition());
+        negativeYCollision = position.y - (size.y / 2) <= entity.getPosition().y - (entity.getSize().y / 2);
     }
 }

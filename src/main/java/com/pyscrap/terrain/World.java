@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.pyscrap.entities.Camera;
 import com.pyscrap.renderEngine.MasterRenderer;
 import com.pyscrap.textures.ModelTexture;
 
@@ -16,7 +17,7 @@ public class World {
 
     List<Chunk> chunks = new ArrayList<>();
 
-    public World(List<ModelTexture> textures, MasterRenderer renderer) {
+    public World(List<ModelTexture> textures, MasterRenderer renderer, Camera camera) {
         byte[][][] blocks = new byte[NUMBER_OF_CHUNKS_X * CHUNK_LENGTH][CHUNK_HEIGHT][NUMBER_OF_CHUNKS_Z
                 * CHUNK_LENGTH];
 
@@ -37,7 +38,7 @@ public class World {
 
         for (int x = 0; x < NUMBER_OF_CHUNKS_X; x++) {
             for (int z = 0; z < NUMBER_OF_CHUNKS_Z; z++) {
-                Chunk chunk = new Chunk(x, z, blocks, textures, renderer);
+                Chunk chunk = new Chunk(x, z, blocks, textures, renderer, camera);
 
                 chunks.add(chunk);
             }

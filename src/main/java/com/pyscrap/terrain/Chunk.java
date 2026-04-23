@@ -7,6 +7,7 @@ import java.util.List;
 import org.joml.Vector3i;
 
 import com.pyscrap.Globals;
+import com.pyscrap.entities.Camera;
 import com.pyscrap.models.RawModel;
 import com.pyscrap.renderEngine.Loader;
 import com.pyscrap.renderEngine.MasterRenderer;
@@ -20,11 +21,15 @@ public class Chunk {
     int xCoord = 0;
     int zCoord = 0;
 
-    public Chunk(int xOffset, int zOffset, byte[][][] world, List<ModelTexture> textures, MasterRenderer renderer) {
+    Camera camera;
+
+    public Chunk(int xOffset, int zOffset, byte[][][] world, List<ModelTexture> textures, MasterRenderer renderer,
+            Camera camera) {
         this.renderer = renderer;
         this.world = world;
         this.xCoord = xOffset;
         this.zCoord = zOffset;
+        this.camera = camera;
 
         for (int x = 0; x < World.CHUNK_LENGTH; x++) {
             for (int y = 0; y < World.CHUNK_HEIGHT; y++) {

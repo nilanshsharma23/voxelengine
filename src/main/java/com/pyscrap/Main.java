@@ -38,7 +38,7 @@ public class Main {
                 Camera camera = new Camera();
 
                 MasterRenderer renderer = new MasterRenderer();
-                World world = new World(textures, renderer);
+                World world = new World(textures, renderer, camera);
 
                 boolean wireframe = false;
 
