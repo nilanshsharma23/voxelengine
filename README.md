@@ -21,4 +21,7 @@ Pressing tab unlocks the wireframe mode, but you have to be really precise with 
 ## AI Usage
 AI was used in the project to generate the voxel vertices and nothing else.
 
+## Screenshot
+![Voxel Engine rendering a lot of blocks without any lag](screenshot.png)
+
 I can't seem to figure out physics and collision just yet, but I hope to add that in a future release.
